@@ -1,3 +1,4 @@
+import sys
 mythWriter = open('MythDAT.txt', 'w') # not working
 datMyth = open('DATMYTH.bmd', 'rb').read()
 myth = datMyth.find('myth')
