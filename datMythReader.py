@@ -1,7 +1,6 @@
 datMyth = open('DATMYTH.bmd', 'rb').read()
 myth = datMyth.find('myth')
 locationHex = -1
-numbEntry = str(000).zfill(2) 
 number = 0
 while True:
     number = number + 1
