@@ -1,5 +1,5 @@
-import sys
-mythWriter = open('MythDAT.txt', 'w') # not working
+import sys, re
+mythWriter = open('MythDAT.txt', 'w') 
 datMyth = open('DATMYTH.bmd', 'rb').read()
 myth = datMyth.find('myth')
 locationHex = -1
@@ -36,7 +36,12 @@ while True:
 
     datMyth1 = datMyth[locationHex:locationHex+8] + '\n'
     datMyth2 = datMyth[locationHex+42:locationHexFirst-2] + '\n' + '\n'
+    
+    datMyth1 = re.sub('[^a-zA-Z0-9 \n\._]', '',datMyth1)
+    datMyth2 = re.sub('[^a-zA-Z0-9 \n\.]', '',datMyth2)
+    
     print datMyth1
     print datMyth2
+    
     mythWriter.write(datMyth1)
     mythWriter.write(datMyth2)
