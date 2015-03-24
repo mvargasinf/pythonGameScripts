@@ -8,7 +8,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
-import that_offset_list as tofl
+import scripts.that_offset_list as tofl
+import scripts.MythName as myth_array
 import sys
 
 try:
@@ -35,7 +36,6 @@ class Ui_Form(object):
         self.comboBox = QtGui.QComboBox(Form)
         self.comboBox.setGeometry(QtCore.QRect(10, 30, 121, 22))
         self.comboBox.setObjectName(_fromUtf8("comboBox"))
-        self.comboBox.addItem(_fromUtf8(""))
         
         self.label = QtGui.QLabel(Form)
         self.label.setGeometry(QtCore.QRect(10, 10, 51, 16))
@@ -56,12 +56,11 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 #----------------------------------MainCode----------------------------------#
-        if c
+        self.comboBox.addItems(myth_array.myth_Name)
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "ThatMythViewer - [r1-beta]", None))
         self.pushButton.setText(_translate("Form", "Add modifications", None))
-        self.comboBox.setItemText(0, _translate("Form", "myth_001", None))
         self.label.setText(_translate("Form", "MythName", None))
         self.label_2.setText(_translate("Form", "HexValue", None))
 if __name__ == "__main__":

@@ -1,11 +1,13 @@
 import sys
-mythWriter = open('MythNumber.py', 'w') 
+
+mythWriter = open('that_offset_list.py', 'w') 
 datMyth = open('DATMYTH.bmd', 'rb').read()
 myth = datMyth.find('myth')
 locationHex = -1
 number = 0
 
 while True:
+    
     number = number + 1
     findlessten = 'myth_00' + str(number)
     findlesshund = 'myth_0' + str(number)
@@ -13,8 +15,10 @@ while True:
     
     if number < 10:
         locationHex = datMyth.find(findlessten, myth + 1)
+        
     elif number < 100:
         locationHex = datMyth.find(findlesshund , myth + 1)
+        
     else:
         locationHex = datMyth.find(findelse, myth + 1)
         
@@ -22,8 +26,9 @@ while True:
         print 'Error: Reached end of list'
         sys.exit()
 
-    datMyth1 = datMyth[locationHex:locationHex+8] + ' = ' + str(locationHex+8) + '\n'
-    print datMyth1
+    datMyth1 = datMyth[locationHex:locationHex+8] + ' = ' + str(locationHex) + '\n'
     mythWriter.write(datMyth1)
+    print datMyth1
+    
     
         
