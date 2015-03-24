@@ -7,7 +7,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-import scripts.PyQt4 *
+from PyQt4 import QtCore, QtGui
 import scripts.that_offset_list as tofl
 import scripts.MythName as myth_array
 import sys
@@ -33,6 +33,12 @@ class Ui_Form(object):
         self.pushButton.setGeometry(QtCore.QRect(10, 90, 131, 23))
         self.pushButton.setObjectName(_fromUtf8("pushButton"))
         
+        self.pushButton2 = QtGui.QPushButton(Form)
+        self.pushButton2.setGeometry(QtCore.QRect(140, 90, 121, 23))
+        self.pushButton2.setObjectName(_fromUtf8("pushButton2"))
+        self.pushButton2.setCheckable(False)
+        self.pushButton2.clicked.connect(self.MythRefLoad)
+        
         self.comboBox = QtGui.QComboBox(Form)
         self.comboBox.setGeometry(QtCore.QRect(10, 30, 121, 22))
         self.comboBox.setObjectName(_fromUtf8("comboBox"))
@@ -55,14 +61,18 @@ class Ui_Form(object):
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
-#----------------------------------MainCode----------------------------------#
         self.comboBox.addItems(myth_array.myth_Name)
-
+        
+    def MythRefLoad(self):
+        print 'test'
+        
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "ThatMythViewer - [r1-beta]", None))
         self.pushButton.setText(_translate("Form", "Add modifications", None))
+        self.pushButton2.setText(_translate("Form", "Load text", None))
         self.label.setText(_translate("Form", "MythName", None))
         self.label_2.setText(_translate("Form", "HexValue", None))
+
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
     Form = QtGui.QWidget()
@@ -71,4 +81,6 @@ if __name__ == "__main__":
     Form.show()
     sys.exit(app.exec_())
 
+def MythRefLoad(self):
+    print 'test'
 
