@@ -67,9 +67,10 @@ class Ui_Form(object):
     
     def myth_load(self):
         currentText = str(self.comboBox.currentText())
-        self.lineEdit_2.setText(str(tofl.mythDict[currentText]))
+        self.lineEdit_2.setText(str(tofl.mythHexDict[currentText]))
+        
     def retranslateUi(self, Form):
-        Form.setWindowTitle(_translate("Form", "ThatMythViewer - [r1-beta]", None))
+        Form.setWindowTitle(_translate("Form", "ThatMythViewer - [r1-beta] - ThatTrueStruggle", None))
         self.pushButton.setText(_translate("Form", "Add modifications", None))
         self.pushButton2.setText(_translate("Form", "Load text", None))
         self.label.setText(_translate("Form", "MythName", None))
@@ -82,7 +83,4 @@ if __name__ == "__main__":
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
-
-def MythRefLoad(self):
-    print 'test'
 
