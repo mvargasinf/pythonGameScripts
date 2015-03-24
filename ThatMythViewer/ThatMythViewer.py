@@ -7,7 +7,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt4 import QtCore, QtGui
+import scripts.PyQt4 *
 import scripts.that_offset_list as tofl
 import scripts.MythName as myth_array
 import sys
