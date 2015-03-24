@@ -12,6 +12,8 @@ import scripts.that_offset_list as tofl
 import scripts.MythName as myth_array
 import sys
 
+currentText = ''
+
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -37,12 +39,12 @@ class Ui_Form(object):
         self.pushButton2.setGeometry(QtCore.QRect(140, 90, 121, 23))
         self.pushButton2.setObjectName(_fromUtf8("pushButton2"))
         self.pushButton2.setCheckable(False)
-        self.pushButton2.clicked.connect(self.MythRefLoad)
+        self.pushButton2.clicked.connect(self.myth_load)
         
         self.comboBox = QtGui.QComboBox(Form)
         self.comboBox.setGeometry(QtCore.QRect(10, 30, 121, 22))
         self.comboBox.setObjectName(_fromUtf8("comboBox"))
-        
+
         self.label = QtGui.QLabel(Form)
         self.label.setGeometry(QtCore.QRect(10, 10, 51, 16))
         self.label.setObjectName(_fromUtf8("label"))
@@ -62,10 +64,10 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
         self.comboBox.addItems(myth_array.myth_Name)
-        
-    def MythRefLoad(self):
-        print 'test'
-        
+    
+    def myth_load(self):
+        currentText = str(self.comboBox.currentText())
+        self.lineEdit_2.setText(str(tofl.mythDict[currentText]))
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "ThatMythViewer - [r1-beta]", None))
         self.pushButton.setText(_translate("Form", "Add modifications", None))
