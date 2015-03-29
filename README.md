@@ -1,3 +1,8 @@
 # PythonGameScripts
-This is a repository for all my Python scripts made for hacking games.
-Currently, I'm interested in Persona 3/4 here. :)
+
+This repository is for posting my scripts of questionable quality I write.
+
+If you want to help out, you can just pull the repo, and have a push request
+(I'm assuming that's what it's called)
+
+--ThatOneStruggle

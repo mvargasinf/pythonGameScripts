@@ -9,21 +9,27 @@ def Main():
     number = 0
 
     while True:
-        tmxRead = open(fileOpened, 'rb').read()
-        dataPos = tmxRead.find('TMX0',locationHex)
         number = number + 1
         name = os.path.splitext(fileOpened)[0] + '_' + str(number) + '.tmx'
         
+        tmxReader = open(fileOpened, 'rb')
+        tmxRead = tmxReader.read()
+        tmxReader.seek(0,2)
+        end = tmxReader.tell()
         tmx_writer = open(name, 'wb')
+        
+        dataPos = tmxRead.find('TMX0',locationHex)
+        
 
         locationHex = tmxRead.find('TMX0',locationHex + 1)
         print locationHex
 
         tmx_writer.write(tmxRead[dataPos-8:locationHex-8])
-        tmx_writer.close()
         
         if locationHex == -1:
-            print 'Error: Reached end of list'   
+            print 'Error: Reached end of list'
+            tmx_writer.write(tmxRead[dataPos:end] + b'\x00')
+            tmx_writer.close()
             Continue()
         
 def Continue():
