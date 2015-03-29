@@ -1,4 +1,4 @@
-import sys, Tkinter, tkFileDialog, os
+import sys, Tkinter, tkFileDialog, os, glob, shutil
 root = Tkinter.Tk()
 root.withdraw()
 
@@ -27,17 +27,21 @@ def Main():
             Continue()
         
 def Continue():
-    yesNo = raw_input('Want to continue? (y,n)')
+    for files in glob.glob('*.tmx'):
+        shutil.move(files, 'tmx_extracted/')
+    yesNo = raw_input('Want to continue? (y,n) ')
 
     if yesNo == 'y':
         TrueStruggle()
     if yesNo == 'n':
         sys.exit()
-        
+    
 def TrueStruggle():
     print '======SPR to TMX Converter======'
     print '======By ThatTrueStruggle======'
-    
+
+    if not os.path.exists('tmx_extracted'):
+        os.makedirs('tmx_extracted')
     Main()
 
 TrueStruggle()        
