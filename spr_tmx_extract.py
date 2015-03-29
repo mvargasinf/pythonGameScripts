@@ -27,7 +27,11 @@ def Main():
             Continue()
         
 def Continue():
-    os.remove(glob.glob('*.tmx')[0])
+    for sizeFile in glob.glob('*.tmx'):
+        fileremove= os.path.getsize(sizeFile)
+        if fileremove == 0:
+            os.remove(sizeFile)
+            
     for files in glob.glob('*.tmx'):
         if not os.path.exists('tmx_extracted/'+ files):
             shutil.move(files, 'tmx_extracted/')
