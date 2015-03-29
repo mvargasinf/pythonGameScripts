@@ -28,7 +28,12 @@ def Main():
         
 def Continue():
     for files in glob.glob('*.tmx'):
-        shutil.move(files, 'tmx_extracted/')
+        if not os.path.exists('tmx_extracted/'+ files):
+            shutil.move(files, 'tmx_extracted/')
+        if os.path.exists('tmx_extracted/'+ files):
+            os.remove(files)
+            print 'Sorry, but ' + files + ' already exists in the TMX_Extracted folder'
+
     yesNo = raw_input('Want to continue? (y,n) ')
 
     if yesNo == 'y':
