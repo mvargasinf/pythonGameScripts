@@ -12,7 +12,7 @@ def Main():
         tmxRead = open(fileOpened, 'rb').read()
         dataPos = tmxRead.find('TMX0',locationHex)
         number = number + 1
-        name = os.path.splitext(fileOpened)[0] + str(number) + '.tmx'
+        name = os.path.splitext(fileOpened)[0] + '_' + str(number) + '.tmx'
         
         tmx_writer = open(name, 'wb')
 
@@ -27,12 +27,10 @@ def Main():
             Continue()
         
 def Continue():
+    os.remove(glob.glob('*.tmx')[0])
     for files in glob.glob('*.tmx'):
         if not os.path.exists('tmx_extracted/'+ files):
             shutil.move(files, 'tmx_extracted/')
-        if os.path.exists('tmx_extracted/'+ files):
-            os.remove(files)
-            print 'Sorry, but ' + files + ' already exists in the TMX_Extracted folder'
 
     yesNo = raw_input('Want to continue? (y,n) ')
 
