@@ -15,7 +15,6 @@ def Main():
     spr_read = spr_reader.read()
     tmx_data = tmx_reader.read()
     tmx_reader.seek(0,2)
-    tmxEnd = tmx_reader.tell()
     tmx_reader.close()
     tmxName = raw_input('What tmx do you want to replace? ')
 
@@ -24,10 +23,10 @@ def Main():
         sys.exit()
     name_pos = spr_read.find(tmxName)
     name_pos = name_pos-36
-    end_data = name_pos-tmxEnd
     spr_writer.write(spr_read)
     spr_writer.seek(name_pos)
     spr_writer.write(tmx_data)
     spr_writer.close()
+    
     raw_input('Data imported correctly! Press enter to continue!')
 Main()
