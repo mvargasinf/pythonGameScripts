@@ -4,29 +4,59 @@ root = Tkinter.Tk()
 root.withdraw()
 
 
-def Main():
-    fileOpenedSPR = tkFileDialog.askopenfilename(title='Open a SPR file.')
-    fileOpenedTMX = tkFileDialog.askopenfilename(title='Open a TMX file.')
+fileOpenedSPR = tkFileDialog.askopenfilename(title='Open a SPR file.')
+fileOpenedTMX = tkFileDialog.askopenfilename(title='Open a TMX file.')
 
-    spr_reader = open(fileOpenedSPR, 'rb')
-    tmx_reader = open(fileOpenedTMX, 'rb')
+spr_reader = open(fileOpenedSPR, 'rb').read()
+tmx_reader = open(fileOpenedTMX, 'rb').read()
+extension = os.path.splitext(fileOpenedSPR)[1]
+
+if extension == '.SPR':
     spr_writer = open('output.spr', 'wb')
+    
+    if spr_reader.find(tmxName) == -1:
+            print 'Sorry, but that does not exist.'
+            sys.exit()
 
-    spr_read = spr_reader.read()
-    tmx_data = tmx_reader.read()
-    tmx_reader.seek(0,2)
-    tmx_reader.close()
+    name_pos = spr_reader.find(tmxName)
+    spr_writer.write(spr_reader)
+    if not spr_reader.find(tmxName, name_pos + 1) == -1:
+        print 'Found 2 instances, skipping name...'
+        
+        truePos = spr_reader.find(tmxName, name_pos + 1)
+        truePos = truePos - 36
+        spr_writer.seek(truePos)
+        spr_writer.write(tmx_reader)
+        spr_writer.close()
+    else:
+        name_pos = name_pos - 36
+        spr_writer.seek(name_pos)
+        spr_writer.write(tmx_reader)
+        spr_writer.close()
+    
+if extension == '.BIN':
     tmxName = raw_input('What tmx do you want to replace? ')
-
-    if spr_read.find(tmxName) == -1:
+    spr_writer = open('output.bin', 'wb')
+    
+    if spr_reader.find(tmxName) == -1:
         print 'Sorry, but that does not exist.'
         sys.exit()
-    name_pos = spr_read.find(tmxName)
-    name_pos = name_pos-36
-    spr_writer.write(spr_read)
-    spr_writer.seek(name_pos)
-    spr_writer.write(tmx_data)
-    spr_writer.close()
+
+    name_pos = spr_reader.find(tmxName)
+    spr_writer.write(spr_reader)
+    if not spr_reader.find(tmxName, name_pos + 1) == -1:
+        print 'Found 2 instances, skipping name...'
+        
+        truePos = spr_reader.find(tmxName, name_pos + 1)
+        truePos = truePos - 36
+        spr_writer.seek(truePos)
+        spr_writer.write(tmx_reader)
+        spr_writer.close()
+    else:
+        name_pos = name_pos - 36
+        spr_writer.seek(name_pos)
+        spr_writer.write(tmx_reader)
+        spr_writer.close()
     
+
     raw_input('Data imported correctly! Press enter to continue!')
-Main()
