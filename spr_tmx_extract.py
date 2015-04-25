@@ -2,15 +2,16 @@ import sys, Tkinter, tkFileDialog, os, glob, shutil
 root = Tkinter.Tk()
 root.withdraw()
 
-locationHex = 0
-number = 0
+
 
 def Main():
+    locationHex = 0
+    number = 0
 # ----------------- File Opener -----------------#    
     fileOpened = tkFileDialog.askopenfilename()
 # ----------------- FileWriterLoop -----------------#
     while True:
-# ----------------- IterationAdvance -----------------#        
+# ----------------- IterationAdvance -----------------#
         number = number + 1
 # ----------------- NameGen -----------------#
         name = os.path.splitext(fileOpened)[0] + '_' + str(number) + '.tmx'
@@ -62,3 +63,4 @@ def TrueStruggle():
         os.makedirs('tmx_extracted')
 # ----------------- Main Code ----------------- #
     Main()      
+TrueStruggle()

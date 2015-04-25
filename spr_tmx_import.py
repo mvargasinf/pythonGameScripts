@@ -63,6 +63,6 @@ def Main():
             spr_writer.close()
             
     raw_input('Data imported correctly! Press enter to continue!')
-
+Main()
 
     
