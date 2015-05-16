@@ -1,0 +1,9 @@
+C:\Users\imthemomma47\Desktop\RMDEditor-master\RMDEditor\bin\Release\RMDEditor.exe.config
+C:\Users\imthemomma47\Desktop\RMDEditor-master\RMDEditor\bin\Release\RMDEditor.exe
+C:\Users\imthemomma47\Desktop\RMDEditor-master\RMDEditor\bin\Release\RMDEditor.pdb
+C:\Users\imthemomma47\Desktop\RMDEditor-master\RMDEditor\obj\Release\RMDEditor.csprojResolveAssemblyReference.cache
+C:\Users\imthemomma47\Desktop\RMDEditor-master\RMDEditor\obj\Release\RMDEditor.Form1.resources
+C:\Users\imthemomma47\Desktop\RMDEditor-master\RMDEditor\obj\Release\RMDEditor.Properties.Resources.resources
+C:\Users\imthemomma47\Desktop\RMDEditor-master\RMDEditor\obj\Release\RMDEditor.csproj.GenerateResource.Cache
+C:\Users\imthemomma47\Desktop\RMDEditor-master\RMDEditor\obj\Release\RMDEditor.exe
+C:\Users\imthemomma47\Desktop\RMDEditor-master\RMDEditor\obj\Release\RMDEditor.pdb
