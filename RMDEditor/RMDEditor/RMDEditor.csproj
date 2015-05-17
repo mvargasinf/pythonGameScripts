@@ -57,6 +57,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FunctionList.cs" />
+    <Compile Include="FunctionList.Designer.cs">
+      <DependentUpon>FunctionList.cs</DependentUpon>
+    </Compile>
     <Compile Include="MSG1\MessageData.cs" />
     <Compile Include="MSG1\Msg1.cs" />
     <Compile Include="Node\ContainerNode.cs" />
@@ -103,6 +107,9 @@
     <Compile Include="TypeExtensions\EncodingExtension.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FunctionList.resx">
+      <DependentUpon>FunctionList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

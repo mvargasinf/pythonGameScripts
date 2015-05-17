@@ -168,7 +168,7 @@ namespace RMDEditor
                 return;
 
             FileDataNode node = treeView1.Nodes[0] as FileDataNode;
-            node.Export(path);
+			node.Export(path);
 
             _Path = path;
             Text = string.Format("{0} - {1}", _Title, path);
@@ -256,16 +256,83 @@ namespace RMDEditor
         
         void SaveToolStripMenuItem1Click(object sender, EventArgs e)
         {
+        	//Kinda hacky lol
         	Control source = ((sender as ToolStripMenuItem).Owner as ContextMenuStrip).SourceControl;
             PictureBox pictureBox = source as PictureBox;
 
             SaveFileDialog saveFile = new SaveFileDialog();
             saveFile.Filter = "PNG File (.png)|*.png";
-            saveFile.ShowDialog();
-            savedFile = saveFile.FileName;
-            
-            if (pictureBox != null)
-            	pictureBox.Image.Save(savedFile);
+        
+           	if(saveFile.ShowDialog() == DialogResult.OK) 
+			{ 
+            	savedFile = saveFile.FileName;
+            	
+            	if (pictureBox != null && savedFile != null)
+            	{
+            		pictureBox.Image.Save(savedFile);
+            	}
+            }
+           	
+            //Kinda hacky also lol
+           	else
+           	{
+           		MessageBox.Show("No filename chosen!", "Error! I am Error!");
+           	}
+           	
+        }
+        
+        private void GetNodeRecursive(TreeNode treeNode, string texts, bool delete)
+        {
+        	if (delete == false)
+        	{
+	            if (treeNode.Checked == true)
+	            {
+	                FileDataNode node = treeNode as FileDataNode;
+					node.Export(texts);         
+	            }
+	            foreach (TreeNode n in treeNode.Nodes)
+	            {
+	                GetNodeRecursive(n, n.Text, false);
+	            }
+        	}
+        	
+        	else
+        	{
+        		if (treeNode.Checked == true)
+	            {
+	                FileDataNode node = treeNode as FileDataNode;
+	                treeView1.Nodes.Remove(node);
+	            }
+	            foreach (TreeNode n in treeNode.Nodes)
+	            {
+	                GetNodeRecursive(n, n.Text, false);
+	            }
+        	}
+
+        }
+        
+        void ExportSelectedNodesToolStripMenuItemClick(object sender, EventArgs e)
+        {
+        	TreeNodeCollection nodes = this.treeView1.Nodes;
+            foreach (TreeNode n in nodes)
+            {	
+            	GetNodeRecursive(n, n.Text, false);
+            }   
+        }
+        
+        void DeleteSelectedNodesToolStripMenuItemClick(object sender, EventArgs e)
+        {
+        	TreeNodeCollection nodes = this.treeView1.Nodes;
+            foreach (TreeNode n in nodes)
+            {	
+            	GetNodeRecursive(n, n.Text,true);
+            }  
+        }
+        
+        void ListOfPlannedFunctionsToolStripMenuItemClick(object sender, EventArgs e)
+        {
+        	FunctionList func = new FunctionList();
+        	func.ShowDialog();
         }
     }
 }

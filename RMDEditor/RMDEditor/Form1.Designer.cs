@@ -39,6 +39,10 @@
         	this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
         	this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        	this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        	this.exportSelectedNodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        	this.deleteSelectedNodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        	this.listOfPlannedFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.splitContainer1 = new System.Windows.Forms.SplitContainer();
         	this.treeView1 = new System.Windows.Forms.TreeView();
         	this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -49,6 +53,7 @@
         	this.pictureBox1 = new System.Windows.Forms.PictureBox();
         	this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
         	this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        	this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
         	this.tabPage3 = new System.Windows.Forms.TabPage();
         	this.panel2 = new System.Windows.Forms.Panel();
         	this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -60,7 +65,6 @@
         	this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
         	this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
         	this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-        	this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
         	this.menuStrip1.SuspendLayout();
         	((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
         	this.splitContainer1.Panel1.SuspendLayout();
@@ -85,12 +89,14 @@
         	// openFileDialog1
         	// 
         	this.openFileDialog1.FileName = "openFileDialog1";
-        	this.openFileDialog1.Filter = "Resource Files|*.RMD; *.PAC; *.BF|Rmd Files|*.RMD|Pac Files|*.PAC|All Files|*.*";
+        	this.openFileDialog1.Filter = "Resource Files(RMD, PAC, BF)|*.RMD; *.PAC; *.BF|All Files|*.*";
         	// 
         	// menuStrip1
         	// 
         	this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-        	        	        	this.fileToolStripMenuItem});
+        	        	        	this.fileToolStripMenuItem,
+        	        	        	this.testToolStripMenuItem,
+        	        	        	this.listOfPlannedFunctionsToolStripMenuItem});
         	this.menuStrip1.Location = new System.Drawing.Point(0, 0);
         	this.menuStrip1.Name = "menuStrip1";
         	this.menuStrip1.Size = new System.Drawing.Size(514, 24);
@@ -153,6 +159,37 @@
         	this.exitToolStripMenuItem.Text = "&Exit";
         	this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
         	// 
+        	// testToolStripMenuItem
+        	// 
+        	this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+        	        	        	this.exportSelectedNodesToolStripMenuItem,
+        	        	        	this.deleteSelectedNodesToolStripMenuItem});
+        	this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+        	this.testToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+        	this.testToolStripMenuItem.Text = "Options";
+        	// 
+        	// exportSelectedNodesToolStripMenuItem
+        	// 
+        	this.exportSelectedNodesToolStripMenuItem.Name = "exportSelectedNodesToolStripMenuItem";
+        	this.exportSelectedNodesToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+        	this.exportSelectedNodesToolStripMenuItem.Text = "Export selected nodes";
+        	this.exportSelectedNodesToolStripMenuItem.Click += new System.EventHandler(this.ExportSelectedNodesToolStripMenuItemClick);
+        	// 
+        	// deleteSelectedNodesToolStripMenuItem
+        	// 
+        	this.deleteSelectedNodesToolStripMenuItem.Name = "deleteSelectedNodesToolStripMenuItem";
+        	this.deleteSelectedNodesToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+        	this.deleteSelectedNodesToolStripMenuItem.Text = "Delete selected nodes";
+        	this.deleteSelectedNodesToolStripMenuItem.Visible = false;
+        	this.deleteSelectedNodesToolStripMenuItem.Click += new System.EventHandler(this.DeleteSelectedNodesToolStripMenuItemClick);
+        	// 
+        	// listOfPlannedFunctionsToolStripMenuItem
+        	// 
+        	this.listOfPlannedFunctionsToolStripMenuItem.Name = "listOfPlannedFunctionsToolStripMenuItem";
+        	this.listOfPlannedFunctionsToolStripMenuItem.Size = new System.Drawing.Size(150, 20);
+        	this.listOfPlannedFunctionsToolStripMenuItem.Text = "List of planned functions";
+        	this.listOfPlannedFunctionsToolStripMenuItem.Click += new System.EventHandler(this.ListOfPlannedFunctionsToolStripMenuItemClick);
+        	// 
         	// splitContainer1
         	// 
         	this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -172,6 +209,7 @@
         	// 
         	// treeView1
         	// 
+        	this.treeView1.CheckBoxes = true;
         	this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
         	this.treeView1.Location = new System.Drawing.Point(0, 0);
         	this.treeView1.Name = "treeView1";
@@ -257,14 +295,21 @@
         	        	        	this.copyToolStripMenuItem,
         	        	        	this.saveToolStripMenuItem1});
         	this.contextMenuStrip1.Name = "contextMenuStrip1";
-        	this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
+        	this.contextMenuStrip1.Size = new System.Drawing.Size(103, 48);
         	// 
         	// copyToolStripMenuItem
         	// 
         	this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-        	this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+        	this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
         	this.copyToolStripMenuItem.Text = "Copy";
         	this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+        	// 
+        	// saveToolStripMenuItem1
+        	// 
+        	this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
+        	this.saveToolStripMenuItem1.Size = new System.Drawing.Size(102, 22);
+        	this.saveToolStripMenuItem1.Text = "Save";
+        	this.saveToolStripMenuItem1.Click += new System.EventHandler(this.SaveToolStripMenuItem1Click);
         	// 
         	// tabPage3
         	// 
@@ -384,13 +429,6 @@
         	this.toolStripButton1.Text = "Data";
         	this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton_Click);
         	// 
-        	// saveToolStripMenuItem1
-        	// 
-        	this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-        	this.saveToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-        	this.saveToolStripMenuItem1.Text = "Save";
-        	this.saveToolStripMenuItem1.Click += new System.EventHandler(this.SaveToolStripMenuItem1Click);
-        	// 
         	// Form1
         	// 
         	this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -429,6 +467,10 @@
         	this.ResumeLayout(false);
         	this.PerformLayout();
         }
+        private System.Windows.Forms.ToolStripMenuItem listOfPlannedFunctionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteSelectedNodesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportSelectedNodesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem1;
 
         #endregion

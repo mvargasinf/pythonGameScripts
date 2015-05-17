@@ -96,7 +96,7 @@ namespace RMDEditor.Node
 
         public void Export(string path)
         {
-            File.WriteAllBytes(path, ToFile());
+            	File.WriteAllBytes(path, ToFile());
         }
 
 
@@ -215,7 +215,7 @@ namespace RMDEditor.Node
             saveDlg.FileName = Text;
             if (saveDlg.ShowDialog() != DialogResult.OK)
                 return;
-
+			
             Export(saveDlg.FileName);
         }
 
