@@ -19,7 +19,7 @@ if all_single == "all":
 		number = number + 1
 		firstLocation = spr_data.find("TMX0", firstLocation + 1)
 		read_size = firstLocation - 4
-		read_size = spr_data[read_size : read_size + 2].encode("hex")
+		read_size = spr_data[read_size : read_size + 4].encode("hex")
 		read_size = int(read_size, 16)
 		tmx_data = firstLocation - 8
 
