@@ -29,21 +29,17 @@ if noName == "y":
 if noName == "n":
 	tmxInstanceCount = sprData.count("TMX0")
 	print(str(tmxInstanceCount)+ " tmx instances found.")
-	replaceInstance = raw_input("OK, which instance do you want to replace? ")
+	replaceInstance = raw_input("OK, which one do you want to replace? ")
 	if int(replaceInstance) > tmxInstanceCount:
 		print("Invalid instance! ")
 		exit(0)
-
-	while number < int(replaceInstance):
-		number = number + 1
-		tmxInstancePos = sprData.find("TMX0", tmxInstanceCount + 1)
-		if number == int(replaceInstance):
-			tmxInstancePos = tmxInstancePos - 8
-			newSPRName = raw_input("What is the new name for the SPR? ")
-			sprDataWriter = open(newSPRName, "wb")
-			sprDataWriter.write(sprData)
-			sprDataWriter.seek(tmxInstancePos)
-			sprDataWriter.write(tmxData)
-			sprDataWriter.close()
+	tmxInstancePos = sprData.find("TMX0", sprData.find("TMX0") + int(replaceInstance))
+	tmxInstancePos = tmxInstancePos - 8
+	newSPRName = raw_input("What is the new name for the SPR? ")
+	sprDataWriter = open(newSPRName, "wb")
+	sprDataWriter.write(sprData)
+        sprDataWriter.seek(tmxInstancePos)
+	sprDataWriter.write(tmxData)
+	sprDataWriter.close()
 	raw_input("Finished! Press enter to exit. ")
 	exit(0)
