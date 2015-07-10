@@ -1,4 +1,4 @@
-import glob, os
+import glob, os, struct
 
 
 def main(name):
@@ -12,9 +12,9 @@ def main(name):
                         read_size = firstLocation - 4
                         read_size = spr_data[read_size : read_size + 4].encode("hex")
                         read_size = int(read_size, 16)
+                        read_size = int(struct.pack('<I', read_size).encode("hex"), 16)
                         tmx_data = firstLocation - 8
-
-                        tmx_data = spr_data[tmx_data:firstLocation + read_size]
+                        tmx_data = spr_data[tmx_data:tmx_data + read_size]
                         tmxWriter = open(name + "/" + str(number) + ".tmx", "wb")
                         tmxWriter.write(tmx_data)
                         tmxWriter.close()
@@ -25,7 +25,8 @@ def main(name):
                 
 for files in glob.glob("*.SPR"):
         foldName = os.path.splitext(files)[0]
-        os.mkdir(foldName)
+        if not os.path.exists(foldName):
+                os.mkdir(foldName)
         spr_data = open(files, "rb").read()
         spr_tmx_count = spr_data.count("TMX0")
         main(foldName)
